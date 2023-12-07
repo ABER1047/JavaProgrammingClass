@@ -1,0 +1,50 @@
+- Pattern객체
+String str = "Hello world, Hello Code!"; 가 존재할 때,
+여기서 Hello라는 글자가 반복됨 (= 패턴)
+이때, Hello라는 문자열 패턴이 str내에서 어디 위치에 존재하는지 찾고 싶으면, 혹은 존재하는지 알고싶을때
+Pattern 객체를 통해 Pattern pt = Pattern.compile("Hello"); 를 통해 패턴 객체를 생성해주고
+Matcher 객체를 통해 Matcher mt = pt.matcher(str); 를 이용하여 
+스트링 객체인 str에 존재하는 "Hello"라는 문자열 패턴의 첫 시작 인덱스 값과 존재 여부등을 확인할 수 있음
+
+//Hello 라는 문자열 패턴 존재 여부 확인 예시
+String str = "Hello world, Hello Code!";
+Pattern pt = Pattern.complie("Hello"); //이때 패턴은 꼭 문자열이 아닌 정규식 표현도 가능
+Pattern boundary = Pattern.complie("\\b\\w{5}\\b") //word수가 5개인 모든 문자열 패턴 찾기
+Matcher mt = pt.matcher(str);
+
+if (!mt.find())
+{
+	System.out.println("cannot find any pattern");
+}
+else
+{
+	System.out.println("found pattern");
+}
+
+
+if (!mt.find())
+{
+	System.out.println("cannot find any pattern");
+}
+else
+{
+	System.out.println(boundary.group()); //word수가 5개인 모든 문자열 출력
+}
+
+
+- Scanner / BufferReader / Console
+Scanner와 BufferReader는 더 넓은 번위의 사용자 입력값 처리 가능
+출력시에는 System.out.print() 혹은 BufferWriter를 이용해야 출력 가능
+
+Console은 JVM과 연관된 문자 기반 시스템 콘솔이 있는 경우만 입력값 처리 가능 (=System 값만 받아올 수 있음)
+출력시에 console.printf()로 바로 출력 가능
+Console은 메모리 누수가 없어서 안닫아도 됨
+보안성이 더 좋음
+
+BufferReader가 성능적으로는 젤 좋으므로 Console, Scanner의 특정 기능을 이용할게 아니면 BufferReader쓰는게 좋음
+
+이외에도 여러 차이점이 존재
+
+
+- StringBuilder를 선언할 때, String 선언처럼 String str = new String("abc");에서 new String()을 생락하고 String str = "abc";로 쓸 수 있는가
+X
